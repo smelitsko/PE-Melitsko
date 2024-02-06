@@ -1,103 +1,114 @@
-/* let ingreso = prompt(
-  "Selecciona una bebida \n 1-Café \n 2- Té \n 3- Agua caliente"
+/* INICIALIZAR NOMBRE DE USUARIO Y PASSWORD */
+let usuarioRegistrado = "smelitsko";
+let passwordRegistrada = "mipassword666";
+
+/* MENU PRINCIPAL DE INGRESO*/
+ingreso = prompt(
+  "¡Bienvenid@s a LiberArt! \nSeleccione alguna de las siguientes opciones:\n 1 - Nuevo usuario \n 2 - Ingresar con usuario existente"
 );
- */
-/* if (ingreso === "1") {
-  alert("Seleccionaste Café");
+
+/* GESTIONAR UNA CUENTA CON PASSWORD */
+if (ingreso === "1") {
+  /*PRIMERA OPCION: INGRESAR NUEVO USUARIO*/
+  //PASO 1: Ingreso y control de usuario
+  let usuarioIngresado = prompt(
+    "Ingrese un nombre de usuario de al menos 8 caracteres"
+  );
+  while (checkUsuario(usuarioIngresado) == false) {
+    usuarioIngresado = prompt(
+      "El usuario ingresado no cumple con los requisitos intente nuevamente "
+    );
+  }
+  alert("El usuario ha sido correctamente registrado");
+  usuarioRegistrado = usuarioIngresado;
+  //PASO 2: Ingreso y control de password
+  let passwordIngresada = prompt(
+    "Ingrese una palabra clave de al menos 8 caracteres que contenga al menos 1 número"
+  );
+  while (checkPassword(passwordIngresada) == false) {
+    passwordIngresada = prompt(
+      "La password ingresada no cumple con los requisitos intente nuevamente "
+    );
+  }
+  alert("La password ha sido correctamente registrada");
+  passwordRegistrada = passwordIngresada;
 } else if (ingreso === "2") {
-  alert("Seleccionaste Té");
-} else if (ingreso === "3") {
-  alert("Seleccionaste Agua caliente");
+  /*SEGUNDA OPCION: INGRESO CON USUARIO Y PASSWRD*/
+  usuarioIngresado = prompt("Ingrese nombre de usuario");
+  passwordIngresada = prompt("Ingrese su password");
+  if (
+    usuarioIngresado == usuarioRegistrado &&
+    passwordIngresada == passwordRegistrada
+  ) {
+    alert("Bienvenida " + usuarioIngresado);
+  } else {
+    alert("Credenciales incorrectas");
+  }
 } else {
-  alert("Opción no válida");
-}
- */
-/* 
-switch (ingreso) {
-  case "1":
-    alert("Seleccionaste Café");
-    break;
-  case "2":
-    alert("Seleccionaste Té");
-    break;
-  case "3":
-    alert("Seleccionaste Agua caliente");
-    break;
-
-  default:
-    alert("Opción no válida");
-    break;
-} */
-//declaracion
-function saludar() {
-  console.log("Hola tarola");
+  prompt("Seleccione 1 o 2 por favor");
 }
 
-//llamado
-/* for (let i = 0; i < 3; i++) {
-  saludar();
-  
-} */
-
-/* function saludarConParametros(nombre="extraño"){//"juan"
-console.log("Hola " + nombre);//Hola juan
-}
-let nombreIngresado=prompt("Ingresa tu nombre")
-/* saludarConParametros("juan")
-saludarConParametros("Pedro")
-saludarConParametros(nombreIngresado) 
-saludarConParametros(nombreIngresado)
-saludarConParametros() */
-
-let resultado = 0; //global
-console.log(resultado);
-function sumar(num1, num2 = 0) {
-  let resultado = num1 + num2;
-  //console.log(resultado);
-  return resultado;
+/*FUNCIONES*/
+// Funciones para controlar si el nombre de usuario tiene al menos 8 caracteres y si el password ingresado tiene al menos un número y al menos 8 caracteres (si cumple ambas condiciones returna "true")
+function checkUsuario(usu) {
+  return usu.length >= 8;
 }
 
-console.log(resultado);
-console.log(sumar(2, 4));
+function checkPassword(pass) {
+  let numeroPresente = false;
+  for (let i = 0; i < pass.length; i++) {
+    if (pass[i] >= 0) {
+      numeroPresente = true;
+      break;
+    }
+  }
+  return pass.length >= 8 && numeroPresente;
+}
 
-/* let num1 = parseFloat(prompt("Ingresa un numero"));
-let num2 = parseFloat(prompt("Ingresa un numero"));
-let operacion = prompt("Ingresa la operacion"); */
-/* 
-let resultSuma=sumar(num1,num2)
-console.log(resultSuma);
-console.log(resultado); */
+/* SELECCIONAR UN LIBRO DE UN MENU */
 
-function calculadora(num1, num2, op) {
-  switch (op) {
-    case "+":
-      return num1 + num2;
-    case "-":
-      return num1 - num2;
-    case "*":
-      return num1 * num2;
-    case "/":
-      return num1 / num2; //valida que num2 sea distinto de cero
+let condicionDeSalida = false;
+let carrito = 0;
+while (condicionDeSalida == false) {
+  let productoSeleccionado = prompt(
+    "Agregar al carrito: \n 1- La paciencia del agua sobre cada piedra ($15000) \n 2- Las niñas del naranjel ($10000) \n 3- Apegos Feroces ($120000) \n 4- Las primas ($20000) \n 5- Salir"
+  );
+  switch (productoSeleccionado) {
+    case "1":
+      carrito = carrito + 15000;
+      alert(
+        "Seleccionaste 'La paciencia del agua. sobre cada piedra' \n Tu carrito tiene un saldo de $" +
+          carrito
+      );
+      break;
+    case "2":
+      carrito = carrito + 10000;
+      alert(
+        "Seleccionaste 'Las niñas del naranjel' \n Tu carrito tiene un saldo de $" +
+          carrito
+      );
+      break;
+    case "3":
+      carrito = carrito + 12000;
+      alert(
+        "Seleccionaste 'Apegos Feroces' \n Tu carrito tiene un saldo de $" +
+          carrito
+      );
+      break;
+    case "4":
+      carrito = carrito + 20000;
+      alert(
+        "Seleccionaste 'Las primas' \n Tu carrito tiene un saldo de $" + carrito
+      );
+      break;
+    case "5":
+      alert(
+        "Seleccionaste 'Salir' \n Tu carrito tiene un saldo de $" + carrito
+      );
+      condicionDeSalida = true;
+      break;
     default:
-      return "Operación no válida";
+      alert("Opción no válida");
+      break;
   }
 }
-
-/* 
-let resSuma= calculadora(num1,num2, operacion)
-console.log(resSuma);
-let resResta= calculadora(num1,num2, "-")
-console.log(resResta); */
-
-//funcion anonima
-
-const saludar2 = function (nombre) {
-  console.log("Hola " + nombre);
-};
-
-saludar2("Dani");
-// flecha
-const saludar3 = (nombre) => {
-  console.log("Hola " + nombre);
-};
-saludar3("jose");
