@@ -73,7 +73,9 @@ let condicionDeSalida = false;
 let carrito = 0;
 while (condicionDeSalida == false) {
   let productoSeleccionado = prompt(
-    "Agregar al carrito: \n 1- La paciencia del agua sobre cada piedra ($15000) \n 2- Las niñas del naranjel ($10000) \n 3- Apegos Feroces ($120000) \n 4- Las primas ($20000) \n 5- Salir"
+    "Agregar al carrito de " +
+      usuarioRegistrado +
+      ": \n 1- La paciencia del agua sobre cada piedra ($15000) \n 2- Las niñas del naranjel ($10000) \n 3- Apegos Feroces ($12000) \n 4- Las primas ($20000) \n 5- Salir"
   );
   switch (productoSeleccionado) {
     case "1":
