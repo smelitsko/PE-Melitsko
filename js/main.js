@@ -9,8 +9,7 @@ ingreso = prompt(
 
 /* GESTIONAR UNA CUENTA CON PASSWORD */
 if (ingreso === "1") {
-  /*PRIMERA OPCION: INGRESAR NUEVO USUARIO*/
-  //PASO 1: Ingreso y control de usuario
+  //Opción 1: Crear nuevo usuario y password
   let usuarioIngresado = prompt(
     "Ingrese un nombre de usuario de al menos 8 caracteres"
   );
@@ -21,7 +20,6 @@ if (ingreso === "1") {
   }
   alert("El usuario ha sido correctamente registrado");
   usuarioRegistrado = usuarioIngresado;
-  //PASO 2: Ingreso y control de password
   let passwordIngresada = prompt(
     "Ingrese una palabra clave de al menos 8 caracteres que contenga al menos 1 número"
   );
@@ -34,7 +32,7 @@ if (ingreso === "1") {
   passwordRegistrada = passwordIngresada;
 }
 
-/*INGRESO CON USUARIO Y PASSWORD*/
+/*Opción 2: ingresar con usuario y password creados previamente*/
 let check = false;
 while (check == false) {
   usuarioIngresado = prompt("Ingrese nombre de usuario");
