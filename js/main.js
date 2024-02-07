@@ -1,10 +1,10 @@
 /* INICIALIZAR NOMBRE DE USUARIO Y PASSWORD */
-let usuarioRegistrado = "smelitsko";
-let passwordRegistrada = "mipassword666";
+let usuarioRegistrado = "desconocido";
+let passwordRegistrada = "desconocido999";
 
 /* MENU PRINCIPAL DE INGRESO*/
 ingreso = prompt(
-  "¡Bienvenid@s a LiberArt! \nSeleccione alguna de las siguientes opciones:\n 1 - Nuevo usuario \n 2 - Ingresar con usuario existente"
+  "¡Bienvenid@s a LiberArt! \n Presione la tecla 1 para crear un nuevo usuario o cualquier otra tecla para continuar con usuario existente"
 );
 
 /* GESTIONAR UNA CUENTA CON PASSWORD */
@@ -32,20 +32,14 @@ if (ingreso === "1") {
   }
   alert("La password ha sido correctamente registrada");
   passwordRegistrada = passwordIngresada;
-} else if (ingreso === "2") {
-  /*SEGUNDA OPCION: INGRESO CON USUARIO Y PASSWRD*/
+}
+
+/*INGRESO CON USUARIO Y PASSWORD*/
+let check = false;
+while (check == false) {
   usuarioIngresado = prompt("Ingrese nombre de usuario");
   passwordIngresada = prompt("Ingrese su password");
-  if (
-    usuarioIngresado == usuarioRegistrado &&
-    passwordIngresada == passwordRegistrada
-  ) {
-    alert("Bienvenida " + usuarioIngresado);
-  } else {
-    alert("Credenciales incorrectas");
-  }
-} else {
-  prompt("Seleccione 1 o 2 por favor");
+  check = controlarIngreso(usuarioIngresado, passwordIngresada);
 }
 
 /*FUNCIONES*/
@@ -63,6 +57,16 @@ function checkPassword(pass) {
     }
   }
   return pass.length >= 8 && numeroPresente;
+}
+
+function controlarIngreso(usu, pass) {
+  if (usu == usuarioRegistrado && pass == passwordRegistrada) {
+    alert("Bienvenida " + usu);
+    return true;
+  } else {
+    alert("Credenciales incorrectas");
+    return false;
+  }
 }
 
 /* SELECCIONAR UN LIBRO DE UN MENU */
