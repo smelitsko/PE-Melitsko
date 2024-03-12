@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon" />
+    <title>PreEntrega 3 | Comisión 53910</title>
+    <!-- <script src="https://kit.fontawesome.com/0bb154f3a0.js" crossorigin="anonymous"></script> -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
+    <!-- alert -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.6/dist/sweetalert2.min.css"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <h1><span>Tercera Entrega Proyecto</span></h1>
+      <hr />
+
+      <!-- SECCION DE BUSQUEDA Y FILTRADO-->
+
+      <section>
+        <h2>Busqueda y filtrado</h2>
+
+        <!-- FILTRAR POR TITULO-->
+
+        <h3>Seleccione un Título</h3>
+        <label for="titulo">Buscar libro</label>
+        <input
+          type="text"
+          name="titulo"
+          id="ingresoTitulo"
+          placeholder="titulo"
+          autofocus
+        />
+        <button id="btnSearch1" class="btn btn-search">buscar</button>
+
+        <!-- FILTRAR POR CATEGORIA-->
+
+        <h3>Seleccione una Categoría</h3>
+        <select name="categorias" id="categorias">
+          <option value="Default">Seleccione categoría</option>
+        </select>
+        <button id="btnSearch2" class="btn btn-search">buscar</button>
+
+        <!-- FILTRAR POR RANGO DE PRECIOS-->
+
+        <h3>Seleccione un Rango de precios</h3>
+        <input
+          type="text"
+          name="min"
+          id="ingresoPrecioMin"
+          placeholder="min"
+          autofocus
+        />
+        <input
+          type="text"
+          name="max"
+          id="ingresoPrecioMax"
+          placeholder="max"
+          autofocus
+        />
+        <button id="btnSearch3" class="btn btn-search">buscar</button>
+      </section>
+
+      <!-- AQUI SE EXPONEN LAS TARJETAS-->
+      <section>
+        <h2>Aquí se exponen las tarjetas</h2>
+        <div id="contenedor" class="contenedor">
+          <!-- contenido dinámico -->
+        </div>
+        <!-- Botones -->
+        <div class="btn-container">
+          <button class="btn btn-success" id="btn-mostrar-carrito">
+            Mostrar carrito
+          </button>
+          <button class="btn btn-delete" id="btn-limpiar-carrito">
+            Limpiar carrito
+          </button>
+        </div>
+      </section>
+
+      <!-- AQUI SE EXPONE EL CARRITO DE COMPRAS-->
+      <section>
+        <h2>Carrito de Compras</h2>
+        <ul id="carrito">
+          <!-- contenido dinámico -->
+        </ul>
+      </section>
+    </div>
+    <!--LIBRERIAS-->
+    <!-- alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.6/dist/sweetalert2.all.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cleave.js@1.6.0/dist/cleave.min.js"></script>
+    <script src="./js/service.js"></script>
+  </body>
+</html>

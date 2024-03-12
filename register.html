@@ -22,8 +22,14 @@
     <div class="wrapper">
       <h1><span>Tercera Entrega Proyecto</span></h1>
       <hr />
-      <h2>Iniciar sesión</h2>
-      <form id="form-login">
+      <h2>Registrarse</h2>
+      <p>
+        Bienvenido/a. Por favor elija un nombre de usuario de al menos 8
+        caracteres y una palabra clave de al menos 8 caracteres que tenga al
+        menos un número.
+      </p>
+
+      <form id="form-register">
         <input type="text" placeholder="Usuario" id="user" name="user" />
         <input
           type="password"
@@ -31,19 +37,14 @@
           id="password"
           name="password"
         />
-        <div class="check">
-          <label for="check">Recordar</label>
-          <input type="checkbox" id="check" name="check" />
-          <p id="message"></p>
-        </div>
         <input
           type="submit"
           class="btn btn-login"
-          value="Ingresar"
+          value="Registrarse"
           name="enviar"
         />
-        ¿No tiene cuenta de usuario?
-        <a href="./register.html">Crear una cuenta</a>
+        ¿Ya tiene cuenta de usuario?
+        <a href="./index.html">Iniciar sesión</a>
       </form>
     </div>
     <!-- alert -->
@@ -54,6 +55,6 @@
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/cleave.js@1.6.0/dist/cleave.min.js"></script>
-    <script src="./js/login.js"></script>
+    <script src="./js/register.js"></script>
   </body>
 </html>
