@@ -36,6 +36,7 @@ ul {
   margin-left: 30px;
   margin-bottom: 10px;
   list-style: none;
+  font-size: 1rem;
 }
 
 form {
@@ -91,6 +92,12 @@ form input {
 .btn-delete {
   background-color: rgb(215, 63, 24);
   color: white;
+}
+
+.btn-close {
+  position: absolute;
+  top: 0px;
+  right: 0px;
 }
 
 .btn-login {
@@ -158,4 +165,31 @@ img {
 
 .card-action {
   max-width: 100%;
+}
+
+.carrito-contenedor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: aliceblue;
+  margin-top: 0px;
+  width: 30%;
+  border: 3px solid #252525;
+  border-radius: 5px;
+  /* transition: all 0.8s ease; */
+  flex-direction: column;
+  position: absolute;
+  top: 0px;
+  right: 2%;
+  /* transform: translateX(-50%); */
+  list-style: none;
+  width: 40%;
+}
+.oculto {
+  display: none;
+}
+
+.carrito-contenido {
+  position: relative;
+  font-size: 10px;
 }

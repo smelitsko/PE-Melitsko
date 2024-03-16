@@ -7,12 +7,15 @@ const btnSearchCat = document.querySelector("#btnSearch2");
 const inputPrecioMin = document.querySelector("#ingresoPrecioMin");
 const inputPrecioMax = document.querySelector("#ingresoPrecioMax");
 const btnSearchPrecios = document.querySelector("#btnSearch3");
-const carritoContenedor = document.querySelector("#carrito");
 
 //INICIALIZAR VARIABLES DEL CARRITO
 const carritoDeLibros = JSON.parse(localStorage.getItem("carrito")) || [];
+
 const btnMostrarCarrito = document.querySelector("#btn-mostrar-carrito");
 const btnLimpiarCarrito = document.querySelector("#btn-limpiar-carrito");
+const carritoContenedor = document.querySelector(".carrito-contenedor");
+const btnClose = document.querySelector(".btn-close");
+const carritoContenido = document.querySelector("#carrito-contenido");
 
 //CONTENEDOR PARA EXPONER TARJETAS
 const contenedor = document.querySelector("#contenedor");
@@ -161,47 +164,55 @@ function crearHtml(arr) {
     //se la agrego al contenedor
     contenedor.innerHTML += html;
   }
-  actualizarBotonesAgregar();
-}
-
-/* FUNCIONES PARA OPERAR EL CARRITO */
-function agregarAlCarrito(e) {
-  const idBoton = e.currentTarget.id;
-  const productoAgregado = arrayDeLibros.find(
-    (libro) => libro.codigo == idBoton
-  );
-  carritoDeLibros.push(productoAgregado);
-  localStorage.setItem("carrito", JSON.stringify(carritoDeLibros));
-  alert("Producto agregado");
-}
-
-function actualizarBotonesAgregar() {
   const botonesAgregar = document.querySelectorAll(".producto-agregar");
   botonesAgregar.forEach((boton) =>
     boton.addEventListener("click", agregarAlCarrito)
   );
 }
 
-function calcularTotal(arr) {
-  return arr.reduce((acc, el) => {
-    return (acc = acc + el.precio);
-  }, 0);
+/* FUNCIONES PARA OPERAR EL CARRITO */
+function carritoItem(codigo, titulo, precio) {
+  this.codigo = String(codigo);
+  this.titulo = titulo;
+  this.precio = precio;
+  this.cantidad = 1;
+  this.subtot = this.precio;
+}
+
+function agregarAlCarrito(e) {
+  const idBoton = e.currentTarget.id;
+  const itemEnCarrito = carritoDeLibros.find((item) => item.codigo == idBoton);
+  if (itemEnCarrito != undefined) {
+    itemEnCarrito.cantidad += 1;
+    itemEnCarrito.subtot += itemEnCarrito.precio;
+  } else {
+    const libroNuevo = arrayDeLibros.find((libro) => libro.codigo == idBoton);
+    itemNuevo = new carritoItem(
+      libroNuevo.codigo,
+      libroNuevo.titulo,
+      libroNuevo.precio
+    );
+    carritoDeLibros.push(itemNuevo);
+  }
+  localStorage.setItem("carrito", JSON.stringify(carritoDeLibros));
+  alert("Producto agregado");
 }
 
 function mostrarInformacionCarrito() {
-  carritoContenedor.innerHTML = "";
-
+  carritoContenido.innerHTML = "";
   if (carritoDeLibros.length == 0) {
+    alert("Carrito vacío");
     return;
   }
-
-  for (const libro of carritoDeLibros) {
+  for (const item of carritoDeLibros) {
     const li = document.createElement("li");
     li.innerHTML = `<div class="fila-carrito">
-    <h3>${libro.titulo}</h3>
-    <p>$${libro.precio}</p>
-  </div>`;
-    carritoContenedor.append(li);
+    <button id = ${item.codigo}  class = "producto-eliminar">-</button>
+    <h3>${item.titulo}</h3>
+    <p> ${item.cantidad} </p>
+    <p>$${item.subtot}</p>
+    </div>`;
+    carritoContenido.append(li);
   }
   //le agrego una fila con el total y un botón de pagar al final
   const li = document.createElement("li");
@@ -211,15 +222,32 @@ function mostrarInformacionCarrito() {
     </div>
     <button class="btn btn-success" id="btn-pagar">   Pagar
     </button>`;
-  carritoContenedor.append(li);
-  actualizarBotonPagar();
-}
-
-function actualizarBotonPagar() {
+  carritoContenido.append(li);
+  const botonesEliminar = document.querySelectorAll(".producto-eliminar");
+  botonesEliminar.forEach(
+    (boton) => boton.addEventListener("click", eliminarDelCarrito) //falta crear funcion eliminar
+  );
   const botonPagar = document.querySelector("#btn-pagar");
   botonPagar.addEventListener("click", () => {
     pagar();
   });
+}
+
+function eliminarDelCarrito(e) {
+  const idBoton = e.currentTarget.id;
+  const itemABorrar = carritoDeLibros.find((item) => item.codigo == idBoton);
+  const indiceObjABorrar = carritoDeLibros.findIndex(
+    (obj) => obj.codigo === itemABorrar.codigo
+  );
+  carritoDeLibros.splice(indiceObjABorrar, 1);
+  alert("Producto eliminado: " + itemABorrar.titulo);
+  localStorage.setItem("carrito", JSON.stringify(carritoDeLibros));
+}
+
+function calcularTotal(arr) {
+  return arr.reduce((acc, el) => {
+    return (acc = acc + el.subtot);
+  }, 0);
 }
 
 function pagar() {
@@ -286,7 +314,12 @@ btnSearchPrecios.addEventListener("click", () => {
 
 // EVENTOS PARA OPERAR SOBRE EL CARRITO
 
+btnClose.addEventListener("click", () => {
+  carritoContenedor.classList.add("oculto");
+});
+
 btnMostrarCarrito.addEventListener("click", () => {
+  carritoContenedor.classList.remove("oculto");
   mostrarInformacionCarrito();
 });
 

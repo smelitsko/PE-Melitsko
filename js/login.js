@@ -1,11 +1,25 @@
-//Recupera el array de usuarios almacenado en local storage; si no existe inicializa como vacío.
+//Recupera el array de usuarios almacenado en LS si no existe inicializa como vacío.
 const arrayDeUsuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+//Verifica si hay credenciales almacenadas de la última sesión
+const credenciales = JSON.parse(localStorage.getItem("credenciales")) || [];
 
 //A título ilustrativo agrego algunos usuarios para probar el funcionamiento en una computadora sin local storage; se pueden comentar estas líneas
-arrayDeUsuarios.push("silvanita", "mipalabraclave10001");
-arrayDeUsuarios.push("lectoravezado", "elnombredemihija103");
-arrayDeUsuarios.push("juandeboedo", "fanaticodelciclon1963");
-arrayDeUsuarios.push("marianadecaballito", "firulais2020");
+arrayDeUsuarios.push({
+  usuario: "silvanita",
+  password: "mipalabraclave10001",
+});
+arrayDeUsuarios.push({
+  usuario: "lectoravezado",
+  password: "elnombredemihija103",
+});
+arrayDeUsuarios.push({
+  usuario: "juandeboedo",
+  password: "fanaticodelciclon1963",
+});
+arrayDeUsuarios.push({
+  usuario: "marianadecaballito",
+  password: "firulais2020",
+});
 
 function Usuario(usuario, password) {
   this.usuario = usuario;
